@@ -1,5 +1,5 @@
-#CHAT APP
-- By Shane Fry
+##CHAT APP
+- By: Lexi Sterio
 
 ## Info
 - In this project I am creating a web app that is using an instant messaging system with node.js and express. This will be a chat system to load instantly without refresh, and will provide a good template chat system for future builds!
@@ -46,4 +46,4 @@
  - https://nodejs.org/en/
 
 ## Authors
-- Shane Fry
+- Lexi Sterio

@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
+const io = require('socket.io')();
 
-const io = require('socket.io')(); //The () at the end incentiates it so you can use it
 
 app.use(express.static('public'));
 
@@ -12,35 +12,28 @@ app.use(require('./routes/contact'));
 app.use(require('./routes/users'));
 
 
-//Added sever = to the listen
 const server = app.listen(3000, () => {
   console.log('app running on port 3000!');
 });
 
-
-//Socket - Get it up and running
+//socket - get it up and running
 io.attach(server);
 
-io.on('connection', socket => {
-  console.log('a user has connected!');
+io.on('connection', socket => { // function(socket) {...}
+  console.log('a user has been connected');
+  io.emit('chat message', { for: 'everyone', message : `${socket.id} is here!`});
 
+  //handle messages sent from the client
+  socket.on('chat message', msg => {
+  io.emit('chat message', { for: 'everyone', message : msg});
 
-  io.emit('chat message', { for: 'everyone', message: `${socket.id} is here!`});
-
-//Handle message from sent for the client
-socket.on('chat message', msg => {
-
-io.emit('chat message', { for: 'everyone', message: msg}); //here we pass in the message not the user name
-
-})
-
+});
 
   socket.on('disconnect', () => {
-    console.log('A user has been disconnectted');
+    console.log('a user has disconnected');
 
-  io.emit('disconnect message', `${socket.id} has left the building`);
+    io.emit('disconnect message', `${socket.id} has left the building`);
 
   });
-
 
 });

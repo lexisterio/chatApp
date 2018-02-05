@@ -10,13 +10,13 @@ module.exports = function(grunt) {
       // },
 
       watch: {
-        /* scripts: {
-          files: ['public/js/main.js'],
-          tasks: ['uglify'],
-          options: {
-            spawn: false
-          }
-        }, */
+      //  scripts: {
+      //    files: ['public/js/main.js'],
+      //    tasks: ['uglify'],
+      //    options: {
+      //      spawn: false
+      //    }
+      //  },
 
         sass: {
           files: ['sass/main.scss'],
@@ -40,6 +40,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
 
-  grunt.registerTask('default', ['sass']); //'uglify', add later if needed
+  grunt.registerTask('default', ['sass']); // 'uglify',
   grunt.registerTask('watchFiles', ['watch']);
 };
