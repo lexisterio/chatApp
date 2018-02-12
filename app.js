@@ -1,46 +1,42 @@
+// initialize our app and tell it to use some plugins from the modules folder
 const express = require('express');
 const app = express();
+const io = require('socket.io')();
 
-const io = require('socket.io')(); //The () at the end incentiates it so you can use it
+// some config stuff
+const PORT = process.env.port || 3000;
 
+// tell our app to serve static files from the public folder
 app.use(express.static('public'));
 
-
-//This is to get express to use the routers file we made in index (Set up Routes)
 app.use(require('./routes/index'));
 app.use(require('./routes/contact'));
 app.use(require('./routes/users'));
 
-
-//Added sever = to the listen
-const server = app.listen(3000, () => {
-  console.log('app running on port 3000!');
+// tell the app to be served up at this port (same as WAMP or MAMP, just a different port)
+const server = app.listen(3000, function() {
+	console.log('listening on localhost:3000');
 });
 
-
-//Socket - Get it up and running
 io.attach(server);
 
-io.on('connection', socket => {
-  console.log('a user has connected!');
+// plug in socket.io
+io.on('connection', function(socket) {
+	console.log('a user has connected');
+	io.emit('chat message', { for: 'everyone', message: `${socket.id} is here to par TAY!!` });
 
+	// listen for a message, and then send it where it needs to go
+	socket.on('chat message', function(msg) {
+		console.log('message: ', msg);
 
-  io.emit('chat message', { for: 'everyone', message: `${socket.id} is here!`});
+		// send a message event to all clients
+		io.emit('chat message', { for: 'everyone', message: msg });
+	});
 
-//Handle message from sent for the client
-socket.on('chat message', msg => {
-
-io.emit('chat message', { for: 'everyone', message: msg}); //here we pass in the message not the user name
-
-})
-
-
-  socket.on('disconnect', () => {
-    console.log('A user has been disconnectted');
-
-  io.emit('disconnect message', `${socket.id} has left the building`);
-
-  });
-
-
+	// listen for disconnet
+	socket.on('disconnect', function() {
+		console.log('a user disconnected');
+		msg = `${socket.id} The user was deported by Trump!`;
+		io.emit('disconnect message', msg);
+	});
 });

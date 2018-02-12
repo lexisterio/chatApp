@@ -1,23 +1,35 @@
-#CHAT APP
-- By Shane Fry
-
-## Info
-- In this project I am creating a web app that is using an instant messaging system with node.js and express. This will be a chat system to load instantly without refresh, and will provide a good template chat system for future builds!
-
-
+##CHAT APP
+- By: Lexi Sterio
 
 ## Prerequisites
 - Atom
-- MAMP
-- Dreamweaver
-- Cinema 4D
+- Terminal
 
-## Installing
-- Atom: https://atom.io/
-- MAMP: https://www.mamp.info/en/
-- Dreamweaver (With Creative Cloud): http://www.adobe-students.com/creativecloud/buy/students.html?sdid=KKTHT&mv=search&s_kwcid=AL!3085!3!221150330581!e!!!!dreamweaver&ef_id=VTmOoQAAAdvZhzMW:20170928001954:s
-- Dreamweaver separate: https://www.adobe.com/ca/products/dreamweaver.html
-- Cinema 4D: https://www.maxon.net/en/try/demo-download/
+## Info
+- In this project I am creating a web app that is using an instant messaging system with node.js, socket.io and express. This will be a chat system to load instantly without refreshing the page, and will provide a good template chat system for future builds!
+
+## Websites used for reference
+- https://expressjs.com/en/starter/generator.html
+- https://www.w3schools.com/cssref/sel_class.asp
+
+## Step 1
+- Verify if we have installed node // node -v
+- verify if we have npm installed  // npm -v
+- install express in a global way  // npm install express-generator -g                                  // -g makes it global
+- This command creates the express application folder structor // express --view=pug chatapp            // after pug write the name you want the main folder to be
+- run the express application in order to see if it works // DEBUG=myapp:* npm start
+- include necessary dependencies for chat application
+            (socket.io, express) = dependencies
+            (grunt-contrib-sass, grunt-contrib-watch, grunt-contrib-uglify-es) = devDependencies
+
+## Step 2
+- Clone files from Trevor-FanshaweC(chatApp) Repo in my own express application
+- modify style of the chat application
+- add extra features to chat application
+
+# Step 3
+- Used Grunt to compile and minify css styles in the chatbox
+- Merge all files to master branch
 
 ## Running the tests
 - W3C Markup Validation
@@ -28,10 +40,6 @@
     - CSS: http://www.css-validator.org/
         - All codes must go through the validator
     - Preview chrome / console
-
-## Deployment
-- Hosting, Domain, and Email is through Hostgator
-
 
 ## Built with
 - Atom - Generated HTML5, CSS, Javascript
@@ -46,4 +54,4 @@
  - https://nodejs.org/en/
 
 ## Authors
-- Shane Fry
+- Lexi Sterio
